@@ -1,0 +1,55 @@
+.ham{
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    transition: all 0.25s;
+    position: relative;
+    transform: rotate(0);
+    transition: all .5s;
+}
+
+.ham-top,
+.ham-middle,
+.ham-bottom{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 24px;
+    height: 2px;
+    border:none;
+    background: rgb(128,128,128);
+}
+
+.ham-middle{
+    transform: translateY(7px);
+}
+.ham-bottom{
+    transform: translateY(14px);
+}
+
+.open{
+    transform: rotate(90deg);
+    transform: translateY(0px);
+    transition: all .5s;
+}
+
+.open .ham-top{
+    transform: rotate(45deg) translateY(6px) translate(6px);
+    transition: all .5s;
+}
+
+.open .ham-middle{
+    display: none;
+    transition: all .5s;
+}
+
+.open .ham-bottom{
+    transform: rotate(-45deg) translateY(6px) translate(-6px);
+    transition: all .5s;
+}
+
+.active{
+    color: rgb(128, 128, 128);
+    background: rgba(128,128,128,0.15);
+    transition: .5s;
+}

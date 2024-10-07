@@ -1,0 +1,16 @@
+<div class="w-full h-full flex justify-center items-center">
+<div class="w-fit h-fit flex flex-col justify-between">
+  <p>Are you sure that you want to delete this record?</p>
+  <div class="flex gap-3">
+    <button
+      class="border border-primary-strong bg-primary-strong text-white active:bg-white active:text-primary-strong"
+      (click)="confirmDelete()"
+    >
+      Confirm
+    </button>
+    <button class="border border-red-500 bg-red-500 text-white active:bg-white active:text-red-500" (click)="cancel()">
+      Cancel
+    </button>
+  </div>
+</div>
+</div>

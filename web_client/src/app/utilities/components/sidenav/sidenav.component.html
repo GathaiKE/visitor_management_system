@@ -1,0 +1,59 @@
+    
+<div class="flex-col justify-start items-start h-full w-fit px-8 hidden fixed text-nav_text py-20 md:flex">
+
+    <!-- <img src="../../../assets/logo.png" alt="LOGO" class="w-32 mb-6"> -->
+   
+    @if(isAssistantSuperuser || isSuperAdmin || isClientAdmin){
+        <span class="flex gap-3 items-center hover:cursor-pointer p-2 hover:bg-primary-medium w-full" (click)="navigate('admins/assistant/all')" [ngClass]="{'bg-primary-light':activeRoute('admins')}">
+            <img src="../../../../assets/icons/admins.png" alt="Admins" class="w-6 h-6">
+            <span class="">Admins</span>
+        </span>
+    }
+
+    @if(isAssistantSuperuser || isSuperAdmin){
+        <span class="flex gap-3 items-center hover:cursor-pointer p-2 hover:bg-primary-medium w-full" (click)="navigate('organizations/all')" [ngClass]="{'bg-primary-light':activeRoute('organizations')}">
+            <img src="../../../../assets/icons/companies.png" alt="Attendance" class="w-6 h-6">
+            <span class="">Organizations</span>
+        </span>
+    }
+
+    @if(isAssistantSuperuser || isSuperAdmin || isClientAdmin){
+         <span class="flex gap-3 items-center hover:cursor-pointer p-2 hover:bg-primary-medium w-full" (click)="navigate('buildings/all')" [ngClass]="{'bg-primary-light':activeRoute('buildings')}">
+            <img src="../../../../assets/icons/building.png" alt="Shifts" class="w-6 h-6">
+            <span class="">Buildings</span>
+        </span>
+    }
+
+    @if(isAssistantSuperuser || isSuperAdmin){
+        <span class="flex gap-3 items-center hover:cursor-pointer p-2 hover:bg-primary-medium w-full" (click)="navigate('visitors/all')" [ngClass]="{'bg-primary-light':activeRoute('visitors')}">
+            <img src="../../../../assets/icons/staff.png" alt="Organizations" class="w-6 h-6">
+            <span class="">Visitors</span>
+        </span>
+    }
+    
+    <span class="flex gap-3 items-center hover:cursor-pointer p-2 hover:bg-primary-medium w-full" (click)="navigate('visits')" [ngClass]="{'bg-primary-light':activeRoute('visits')}">
+        <img src="../../../../assets/icons/time.png" alt="Organizations" class="w-6 h-6">
+        <span class="">Visits</span>
+    </span>
+
+
+    @if(isAssistantSuperuser || isSuperAdmin || isClientAdmin){
+        <span class="flex gap-3 items-center hover:cursor-pointer p-2 hover:bg-primary-medium w-full" (click)="navigate('payments')" [ngClass]="{'bg-primary-light':activeRoute('payments')}">
+            <img src="../../../../assets/icons/payment.png" alt="Shifts" class="w-6 h-6">
+            <span class="">Payments</span>
+        </span>
+    }
+
+    @if(isAssistantSuperuser || isSuperAdmin || isClientAdmin){
+        <span class="flex gap-3  items-center hover:cursor-pointer p-2 hover:bg-primary-medium w-full" (click)="navigate('analytics')" [ngClass]="{'bg-primary-light':activeRoute('analytics')}">
+                <img src="../../../../assets/icons/analytics.png" alt="Staff" class="w-6 h-6">
+                <span class="">Analytics</span>
+            </span>
+    }
+
+    
+    <span class="flex gap-3 items-center hover:cursor-pointer p-2 hover:bg-primary-medium w-full" (click)="logOut()">
+        <img src="../../../../assets/icons/logout_icon.png" alt="Dashboard" class="w-6 h-6">
+        <span class="">Log out</span>
+    </span>    
+</div>

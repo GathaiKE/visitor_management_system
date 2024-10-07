@@ -1,0 +1,119 @@
+<div class="flex flex-row">
+    <app-sidenav></app-sidenav>
+    <div class="flex flex-col w-full md:ml-60 min-h-screen">
+        <app-header></app-header>
+        <div class="flex flex-col gap-4 w-full h-full bg-primary-light p-5 md:py-24">
+            @if(showSpinner === false && organization !== null){
+                <button class="w-fit" (click)="goBack()">Back</button>
+                <div class="flex flex-col w-full h-fit rounded-lg bg-white p-8 gap-8">
+                    <div class="flex justify-between w-full items-center">
+                        <div class="flex flex-col w-fit h-full gap-4">
+                            <span class="text-3xl text-primary-strong">{{organization.organization_name}} </span>
+                            <span class="text-gray-500">{{organization.organization_number}}</span>
+                        </div>
+                        <div class="flex flex-col w-fit h-full">
+                            <button (click)="openOrgUpdateForm()">Edit Organization details</button>
+                        </div>
+                    </div>
+                    <div class="flex w-full">
+                        <div class="border-t-2 border-primary-strong w-full"></div>
+                    </div>
+                    <div class="flex gap-8 w-full h-fit px-10">
+                        <span class="flex flex-col gap-2 w-fit h-fit">
+                            <span class="flex flex-col gap-2 w-fit h-fit">
+                                <span class="flex gap-2 items-center">
+                                    <img src="../../../../assets/icons/location.png" class="w-5">
+                                    <span class="">Location</span>
+                                </span>
+                                <span class="mx-auto text-gray-500">{{organization.address}}</span>
+                            </span>
+                        </span>
+                        <span class="flex flex-col gap-2 w-fit h-fit">
+                            <span class="flex gap-2 items-center">
+                                <img src="../../../../../assets/icons/status.png" class="w-5">
+                                <span class="">Status<span class="text-red-500">*</span></span>
+                            </span>
+                        @if(organization.status){
+                            <span class="mx-auto text-green-500">Active</span>
+                        }
+
+                        @if(!organization.status){
+                            <span class="mx-auto text-blue-500">Suspended</span>
+                        }
+                        </span>
+                        <span class="flex flex-col gap-2 w-fit h-fit">
+                            <span class="flex gap-2 items-center">
+                                <img src="../../../../../assets/icons/admins.png" class="w-5">
+                                <span class="">Admin</span>
+                            </span>
+                            <span class="mx-auto text-gray-500">Organization Admin</span>
+                        </span>
+                        <span class="flex flex-col gap-2 w-fit h-fit">
+                            <span class="flex gap-2 items-center">
+                                <img src="../../../../../assets/icons/mail.png" class="w-5">
+                                <span class="">Email <span class="text-red-500">*</span></span>
+                            </span>
+                            <span class="mx-auto text-gray-500">{{organization.email}}</span>
+                        </span>
+                        <span class="flex flex-col gap-2 w-fit h-fit">
+                            <span class="flex gap-2 items-center">
+                                <img src="../../../../../assets/icons/phone.png" class="w-5">
+                                <span class="">Phone <span class="text-red-500">*</span></span>
+                            </span>
+                            <span class="mx-auto text-gray-500">{{organization.phone_number}}</span>
+                        </span>
+                    </div>
+                </div>
+                    <span class="text-md font-semibold px-6 my-5">Organization Buildings</span>
+                    <div class="flex flex-col bg-white p-8 gap-8 rounded-2xl h-full">
+                        <div class="flex justify-end w-full">
+                            <button (click)="openBuildingRegisterForm()">New Building</button>
+                        </div>
+        
+                        <div class="flex w-full">
+                            <div class="border-t-2 border-primary-strong w-full"></div>
+                        </div>
+                        <table>
+                            <thead class="mb-3">
+                                <tr class="text-header_text border-b-2">
+                                    <th class="text-start">Building</th>
+                                    <th class="text-start hidden md:table-cell">Floors</th>
+                                    <th class="text-start">Location</th>
+                                    <th class="text-start hidden md:table-cell">Organization</th>
+                                    <th class="text-start">Status</th>
+                                    <th class="text-start">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let building of buildings">
+                                    <td>{{building.building_name}}</td>
+                                    <td class=" hidden md:table-cell">{{building.floors}}</td>
+                                    <td class=" hidden md:table-cell">{{building.location}}</td>
+                                    <td>{{building.organization?.organization_name}}</td>
+                                    @if(building.status){<td class="text-green-500">Active</td>}@if(!building.status){<td class="text-blue-500">Suspended</td>}
+                                    <td><span class="underline underline-offset-2 cursor-pointer font-medium" (click)="details(building.id)">View</span></td>
+                                </tr>
+                                @if(buildings.length === 0 && !showSpinner){
+                                    <tr>
+                                        <td colspan="10" class="text-start p-5"> <p class="font-semibold">Organization has no registered buildings.</p></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+            }
+            @if(showSpinner === true){
+                <app-spinner [text]="'Loading...'"></app-spinner>
+            }
+        </div>
+    </div>
+  </div>
+
+  @if(showForm){
+    <app-dual-row-form [abort]="'Close'" [submit]="'Register'" (closeEvent)="closeForm()" (formValue)="register($event)" [title]="'New Building'" [formConfig]="formConfig" [formTemplate]="buildingForm" [size]="'fit'" [data]="organizations"></app-dual-row-form>
+}
+
+
+@if(showEditOrgForm){
+    <app-dual-row-form [abort]="'Close'" [submit]="'Update'" (closeEvent)="closeUpdateOrgForm()" (formValue)="updateOrg($event)" [title]="'Update Organization Info'" [formConfig]="updateFormConfig" [formTemplate]="updateOrgForm" [size]="'fit'"></app-dual-row-form>
+}

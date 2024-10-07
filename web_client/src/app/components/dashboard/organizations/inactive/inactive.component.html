@@ -1,0 +1,47 @@
+<div class="flex flex-col gap-3 h-full w-full rounded-xl py-2 px-4">
+    <span class="w-full p-3 text-sm">
+        <input type="p-2 rounded-lg" placeholder="Search here" class="md:w-1/3" [(ngModel)]="searchString" (keydown)="filter()" (keyup)="filter()">
+    </span>
+    <div class="flex flex-row flex-nowrap justify-between items-center w-full h-fit bg-white rounded-xl p-2" *ngFor="let org of displayedData">
+        <span class="bg-primary-light rounded-full justify-center items-center p-4 w-fit hidden md:flex">
+            <img src="../../../../../assets/images/organizations_icon.png" alt="Org" class="w-5 h-5">
+        </span>
+        <span class="flex flex-col text-base">
+            <span class="">Organization Number</span>
+            <span class="text-gray-500">{{org.organization_number}}</span>
+        </span>
+        <span class="flex flex-col text-base">
+            <span class="">Name</span>
+            <span class="text-gray-500">{{org.organization_name}}</span>
+        </span>
+        <span class="flex-col text-base hidden md:flex">
+            <span class="">Date Joined</span>
+            <span class="text-gray-500">{{org.created_at | date:"dd MMM y"}}</span>
+        </span>
+        <span class="flex-col text-base hidden md:flex">
+            <span class="">Status</span>
+            <span [ngClass]="org.status === true?'text-green-500':'text-red-500'">Suspended</span>
+        </span>
+        <span class="items-center justify-center text-base flex">
+            <span class="text-indigo-500 text-base hover:cursor-pointer" (click)="getDetails(org.id)">View</span>
+        </span>
+    </div>
+
+    @if(displayedData.length === 0 && !showSpinner){
+        <div>
+            <p class="font-semibold italic ml-10">No records found</p>
+        </div>
+    }
+    
+    @if(showSpinner){
+        <div>
+            <app-spinner [text]="'Loading'"></app-spinner>
+        </div>
+    }
+    
+    @if(showPag){
+        <app-paginator [totalItems]="organizations.length" [pageSize]="pageSize"
+                [currentPage]="currentPage" (pageChange)="onPageChange($event)" />
+    }
+    
+</div>

@@ -1,0 +1,9 @@
+.cell
+.head{
+    padding: 2;
+}
+
+.mat-tool-tip {
+    background-color: rgb(102, 204, 102);
+    color: black;
+  }

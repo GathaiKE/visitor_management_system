@@ -1,0 +1,99 @@
+<!-- <div class="login-container h-screen w-full">
+    <div class="w-full h-full flex items-center justify-center bg-container_bg">
+        <div class="flex w-full p-8 h-fit md:p-0 md:w-6/12">
+            <div class="bg-login_bg p-10 w-full md:w-2/3 h-fit flex flex-col gap-6 rounded-l">
+                <span class="text-lg md:text-xl text-black font-bold w-full text-center">Log In As Admin</span>
+                <form [formGroup]="loginForm" class="flex flex-col gap-8 w-full">
+                    <span class="flex flex-col">
+                        <span class="flex flex-col md:flex-row gap-2">
+                            <label for="email" class="md:min-w-20">Email</label>
+                            <input type="text" formControlName="email" placeholder="email@example.com" class="md:w-full drop-shadow-lg">
+                        </span>    
+                        <span class="h-1">
+                            <span *ngIf="email?.touched && email?.hasError('required')" class="text-red-500">Email is required*</span>
+                            <span *ngIf="email?.touched && email?.hasError('email')" class="text-red-500">Invalid email format*</span>
+                        </span>
+                    </span>
+                
+                    <span class="flex flex-col gap-2">
+                        <span class="flex flex-col gap-2 md:flex-row">
+                            <label for="password" class="md:min-w-20">Password</label>
+                            <input formControlName="password" placeholder="password" [type]="show?'text':'password'" class="w-full drop-shadow-lg" (keyup)="checkInputValue(password?.value)">
+                        </span>
+                        <span class="flex gap-2 ml-24" *ngIf="showPasswordCheck">
+                            <input type="checkbox" class="hover:cursor-pointer outline-none" formControlName="checked" (click)="showPassword()">
+                            <label for="show-password" class="text-base text-gray-600">{{showText}} password</label>
+                        </span>
+                        <span class="h-1">
+                            <span *ngIf="password?.touched && password?.hasError('required')" class="text-red-500">Password is required*</span>
+                        </span>
+                    </span>
+
+                    <span class="w-full flex justify-center">
+                        <button type="submit" class="flex text-center p-1 bg-primary-strong text-white justify-center w-40 md:w-20" (click)="login()">Log In</button>
+                    </span>
+                </form>
+                
+            </div>
+            <div class=" flex-col bg-primary-medium justify-between items-center w-1/3 py-10 rounded-r hidden md:flex">
+                <span class="w-full flex justify-center px-5">
+                    <img src="../../../../assets/images/AMS-logocropp.jpg"  alt="Cintelcore AMS">
+                </span>
+                <span class="flex flex-rowgap-2 justify-center items-center">
+                    <span class="text-white text-md">Powered By</span>
+                    <img src="../../../../assets/images/limitless-logo.png" class="w-20" alt="Cintelcore Limitless">
+                </span>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<app-header></app-header>
+<div class="flex w-full min-h-screen flex-row">
+    <div class="w-1/2 pic">
+        <div class="w-full bg-gradient-to-b from-backdrop to-black h-full flex justify-center items-end p-24">
+            <div class="flex flex-col w-full text-white h-fit">
+                <p class="text-6xl">Visitor management with <a href="#" class="cursor-pointer underline underline-offset-4 font-bold">Cintelcore AMS</a></p>
+                <p class="leading-relaxed">Get ready to experience the ultimate in visitor management and elevate your organization's hospitality.</p>
+            </div>
+        </div>
+    </div>
+    <div class="flex justify-center items-center flex-col w-1/2 p-7 bg-primary-light">
+        <div class="flex flex-col w-7/12 gap-8 text-login_text">
+            <div class="flex flex-col gap-3">
+                <h1 class="text-start w-full font-bold text-md">Welcome Back!</h1>
+                <p class="text-start w-full">Welcome back, Please log into your account</p>
+            </div>
+            <form class="w-full flex flex-col gap-8" (ngSubmit)="login(loginForm)" #loginForm="ngForm">
+                <div class="flex flex-col gap-3 w-full h-fit">
+                    <span class="flex justify-between w-full gap-3 h-fit items-center relative">
+                        <label for="email">Email</label>
+                        @if(email.invalid && (email.dirty || email.touched)){
+                            <p class="inline text-red-500 absolute right-0">Use a valid email address*</p>
+                        }
+                    </span>
+                    <input type="email" name="email" placeholder="email@gmail.com" class="p-3 text-login_text outline-login_text" required email #email="ngModel" ngModel>
+                </div>
+                <div class="flex flex-col gap-3 w-full h-fit">
+                    <span class="flex justify-between w-full gap-3 h-fit items-center relative">
+                        <label for="password">Password</label>
+                        @if(password.invalid && (password.dirty || password.touched)){
+                            <p class="inline text-red-500 absolute right-0">The password used is not valid*</p>
+                        }
+                    </span>
+                    <input type="password" name="password" ngModel placeholder="******" class="p-3 text-login_text outline-login_text" required minlength="7" #password="ngModel">
+                    @if(showPasswordCheck){
+                        <span class="flex gap-2 ml-24">
+                            <input type="checkbox" class="hover:cursor-pointer outline-none" formControlName="checked" (click)="showPassword()">
+                            <label for="show-password" class="text-base text-gray-600">{{showText}} password</label>
+                        </span>
+                    }
+                </div>
+                <button type="submit" class="bg-primary-strong active:bg-white active:text-primary-strong w-full p-3 rounded-lg"><span class="w-full text-center">Log In</span></button>
+            </form>
+        </div>
+       
+
+    </div>
+</div>
+<!-- <app-footer></app-footer> -->

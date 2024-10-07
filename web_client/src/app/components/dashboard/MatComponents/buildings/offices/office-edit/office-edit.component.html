@@ -1,0 +1,28 @@
+<div class="flex w-full p-2 flex-col justify-center items-center">
+  <h1 mat-dialog-title class="Stext-lg">Update Office</h1>
+  <div class="flex justify-center flex-col gap-2" class="w-full">
+    <form action="submit" [formGroup]="updateForm">
+      <mat-form-field appearance="outline" class="custom-width">
+        <mat-label>Office Name</mat-label>
+        <input matInput formControlName="office_name"/>
+      </mat-form-field>
+      <div class="flex justify-right gap-2">
+        <button
+        mat-raised-button
+        class="bg-primary-strong text-white border border-primary-strong active:text-primary-strong active:bg-white"
+        (click)="saveChanges()"
+        >
+          Save
+        </button>
+        <button
+          mat-raised-button
+          class="bg-primary-strong text-white border border-primary-strong active:text-primary-strong active:bg-white"
+          (click)="closeDialog()"
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+
+</div>

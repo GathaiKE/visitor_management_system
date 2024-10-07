@@ -1,0 +1,28 @@
+<div class="flex flex-row">
+  <app-sidenav></app-sidenav>
+  <div class="flex flex-col w-full md:ml-60 min-h-screen">
+      <app-header></app-header>
+      <div class="flex flex-col gap-4 w-full h-full bg-primary-light p-5 md:py-24">
+          <span class="w-full h-fit items-center rounded-lg p-4 bg-white flex flex-col gap-3 md:flex-row md:p-6">
+              <span class="bg-primary-light rounded-full justify-center items-center p-4 w-fit hidden md:flex">
+                  <img src="../../../../assets/icons/user.png" alt="Visitor">
+              </span>
+              <span class="h-full w-full flex flex-col gap-3 items-center justify-center">
+                  <span class="text-primary-dark text-md font-medium self-start md:text-lg">Welcome to Visitors management</span>
+                  <span class="md:text-md self-start">Cintelcore Limited</span>
+              </span>
+              <!-- <span class="flex justify-start md:justify-center w-full md:w-fit">
+                  <button class="w-24" (click)="openForm()">New Building</button>
+              </span> -->
+          </span>
+          <div class="flex flex-col w-full gap-2 md:w-9/12">
+              <ul class="w-full h-fit flex gap-2 text-header_text text-sm">
+                  <li class="p-2 cursor-pointer" [ngClass]="activeRoute('visitors/all')?' border-b-primary-strong border-b-4 text-primary-strong': ''" (click)="navigate('visitors/all')">All</li>
+                  <li class="p-2 cursor-pointer" [ngClass]="activeRoute('visitors/active')?' border-b-primary-strong border-b-4 text-primary-strong': ''" (click)="navigate('visitors/active')">Active</li>
+                  <li class="p-2 cursor-pointer" [ngClass]="activeRoute('visitors/blacklisted')?' border-b-primary-strong border-b-4 text-primary-strong': ''" (click)="navigate('visitors/blacklisted')">Blacklisted</li>
+              </ul>
+              <router-outlet></router-outlet>
+          </div>
+      </div>
+  </div>
+</div>

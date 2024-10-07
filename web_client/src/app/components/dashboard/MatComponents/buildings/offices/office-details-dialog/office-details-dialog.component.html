@@ -1,0 +1,28 @@
+ <div class="w-full h-full flex flex-col justify-center items-center gap-3">
+    <span class="font-bold text-lg">Office Details</span>
+    <div class="flex justify-Between h-fit w-10/12 items-center">
+        <span class="flex flex-col w-1/2 items-start justify-between gap-4">
+            <span class="flex gap-4" *ngIf="office.office_name">
+                <label for="office_name" class="text-gray-600 font-bold">Office Name</label>
+                <span class='font-bold'>{{office.office_name}}</span>
+            </span>
+            <span class="flex gap-4">
+                <label for="user_name" class="text-gray-600 font-bold" *ngIf="office.floor.building.organization">Organization</label>
+                <span class='font-bold'>{{office.floor.building.organization?.organization_name}}</span>
+            </span>
+        </span>
+        <span class="flex flex-col w-1/2 items-start justify-between gap-4">
+           <span class="flex gap-4">
+                <label for="password" class="text-gray-600 font-bold" *ngIf="office.floor">Floor</label>
+                <span class='font-bold'>{{office.floor.floor_number}}</span>
+            </span>
+            <span class="flex gap-4">
+                <label for="organization" class="text-gray-600 font-bold" *ngIf="office.floor.building">Building</label>
+                <span class='font-bold'>{{office.floor.building.building_name}}</span>
+            </span>
+        </span>
+    </div>
+    <span class="flex w-10/12 justify-right">
+        <button (click)="cancel()">Cancel</button>
+    </span>
+</div>

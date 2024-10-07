@@ -1,0 +1,70 @@
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base{
+    button{@apply text-base flex text-center h-fit px-2 py-1 rounded text-white border border-primary-strong bg-primary-strong active:bg-white active:text-primary-strong active:border}
+    a{@apply active:text-primary-medium no-underline hover:cursor-pointer}
+    input{@apply p-2 bg-white rounded-md border-primary-medium  outline-none}
+    textarea{@apply p-2 bg-white rounded-md border-primary-medium  outline-none}
+    select{@apply p-2 bg-primary-light rounded-md border-gray-300  cursor-pointer}
+    select option {
+        @apply p-1 bg-primary-light;
+    }
+    select option:hover {
+        @apply bg-primary-medium;
+    }
+    select option:checked {
+        @apply bg-primary-medium;
+    }
+}
+
+.ham{
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    transition: all 0.25s;
+    position: relative;
+    transform: rotate(0);
+    transition: all 0.5s;
+}
+
+.ham-top,
+.ham-middle,
+.ham-bottom{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 24px;
+    height: 2px;
+    border:none;
+    background: white;
+}
+
+.ham-middle{
+    transform: translateY(7px);
+}
+.ham-bottom{
+    transform: translateY(14px);
+}
+
+.open{
+    transform: rotate(90deg);
+    transform: translateY(0px);
+}
+
+.open .ham-top{
+    transform: rotate(45deg) translateY(6px) translate(6px);
+}
+
+.open .ham-middle{
+    display: none;
+}
+
+.open .ham-bottom{
+    transform: rotate(-45deg) translateY(6px) translate(-6px);
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

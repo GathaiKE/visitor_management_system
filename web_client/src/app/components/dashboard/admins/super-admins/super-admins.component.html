@@ -1,0 +1,24 @@
+<div class="flex flex-row">
+    <div class="flex flex-col w-full h-full">
+        <div class="flex flex-col gap-4 w-full h-full">
+            <div class="flex flex-col w-full gap-2">
+                <span class="text-welcome text-lg">Assistant Admins</span>
+                <div class="flex items-center">
+                    <ul class="w-full h-fit flex gap-2 text-header_text text-sm left-0">
+                        <li class="p-2 cursor-pointer" [ngClass]="activeRoute('admins/assistant/all')?' border-b-primary-strong border-b-4 text-primary-strong':''" (click)="navigate('admins/assistant/all')">All</li>
+                        <li class="p-2 cursor-pointer" [ngClass]="activeRoute('admins/assistant/active')?' border-b-primary-strong border-b-4 text-primary-strong':''" (click)="navigate('admins/assistant/active')">Active</li>
+                        <li class="p-2 cursor-pointer" [ngClass]="activeRoute('admins/assistant/inactive')?' border-b-primary-strong border-b-4 text-primary-strong':''" (click)="navigate('admins/assistant/inactive')">Inactive</li>
+                    </ul>
+                    
+                    <button
+                    class="p-2 bg-primary-dark text-white border text-sm text-center border-primary-dark active:bg-white active:text-primary-dark rounded-lg right-0 w-28 items-centr justify-center"
+                    (click)="openForm()"><span class="w-full">New Admin</span></button>
+                </div>
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</div>
+@if(showForm){
+    <app-dual-row-form [abort]="'Close'" [submit]="'Register'" (closeEvent)="closeForm()" (formValue)="register($event)" [title]="'Inhouse Administrator'" [formConfig]="formConfig" [formTemplate]="adminForm" [size]="'fit'"></app-dual-row-form>
+}

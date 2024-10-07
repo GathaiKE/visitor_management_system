@@ -1,0 +1,115 @@
+ <div class="flex flex-row">
+    <app-sidenav></app-sidenav>
+    <div class="flex flex-col w-full md:ml-60 min-h-screen">
+        <app-header></app-header>
+        <div class="flex flex-col gap-4 w-full h-full bg-primary-light p-3 text-xs mt-16 md:p-5">
+            <span class="w-full h-fit items-center rounded-lg p-2 bg-white flex flex-col gap-3 md:flex-row md:p-3">
+                <span class="bg-primary-light rounded-full justify-center items-center p-4 w-fit hidden md:flex">
+                    <img src="../../../../assets/icons/time.png" alt="Visits" class="w-6 h-6">
+                </span>
+                <span class="h-full w-full flex flex-col gap-3 items-center">
+                    <span class="md:text-md self-start">Visits</span>
+                    <span class="text-primary-strong text-xs self-start lg:text-xs">Keep track of visitor traffic on daily basis</span>
+                </span>
+            </span>
+            <div class="flex flex-col w-full gap-2">
+                <div class="flex flex-col gap-3 w-full">
+                    <span class="flex flex-col gap-3 text-xs md:flex-row md:flex-nowrap lg:text-xs">
+                        <span class="flex flex-col gap-1">
+                            <label for="date">Date</label>
+                            <input type="date" class="flex flex-row gap-2 rounded-lg bg-white text-header_text text-xs py-2 px-4 w-full cursor-pointer md:w-fit lg:text-xs" [(ngModel)]="dateFilter" (change)="filterByDate($event)">
+                        </span>
+                        <span class="flex flex-col gap-1">
+                            <label for="organization">Organization</label>
+                            <select name="organization"
+                                class="flex flex-row gap-2 rounded-lg bg-white text-header_text text-xs py-2 px-4 w-full cursor-pointer md:w-fit lg:text-xs" (change)="filterByOrganization($event)">
+                                <option value="" class="bg-white">All Records</option>
+                                <option *ngFor="let organization of organizations" class="bg-white" value="{{organization.id}}">{{organization.organization_name}}</option>
+                            </select>
+                        </span>
+                        <span class="flex flex-col gap-1">
+                            <label for="building">Building</label>
+                            <select name="building"
+                                class="flex flex-row gap-2 rounded-lg bg-white text-header_text text-xs py-2 px-4 w-full cursor-pointer md:w-fit lg:text-xs" (change)="filterByBuilding($event)">
+                                <option value="" class="bg-white">All Records</option>
+                                <option *ngFor="let building of buildings" class="bg-white" value="{{building.id}}">{{building.building_name}}</option>
+                            </select>
+                        </span>
+                        <span class="flex items-end">
+                            <button
+                                class="flex flex-row gap-2 rounded-lg bg-nav_text text-xs py-2 px-4 w-full border border-primary-strong cursor-pointer md:w-fit lg:text-xs active:text-primary-strong active:bg-white">
+                                <img src="../../../../assets/icons/export.png" alt="" >
+                                <!-- <span class="w-full">Export Report</span> -->
+                                 Export Records
+                            </button>
+                        </span>
+                    </span>
+                    <span class="w-full flex items-center justify-start p-2">
+                        <span class="text-md text-welcome">Today, {{today | date:'d MMM y'}}</span>
+                    </span>
+                    @if(showGraph){
+                        <span class="text-xs flex h-52 w-full">
+                            <span class="w-full h-full">
+                                <canvas id="barchart"></canvas>
+                            </span>
+                        </span>
+                    }
+                    
+                    <!-- <router-outlet></router-outlet> -->
+                    <div class="flex flex-col gap-2 h-full w-full bg-white rounded-xl p-2 md:py-2 md:px-4">
+                        <span class="w-full h-fit flex justify-between p-3 text-sm items-center md:text-base">
+                            <input type="text" class="p-2 rounded-lg h-fit" placeholder="Search here" [(ngModel)]="searchString" (keyup)="filter()"
+                                (keydown)="filter()">
+                        </span>
+                        <table class="text-sm md:text-base">
+                            <thead>
+                                <tr class="text-nav_text">
+                                    <th class="text-start text-header_text border-b p-2">First Name</th>
+                                    <th class="text-start text-header_text border-b p-2">Last Name</th>
+                                    <th class="text-start text-header_text border-b p-2 hidden md:table-cell">Phone</th>
+                                    <th class="text-start text-header_text border-b p-2 hidden md:table-cell">Id Number</th>
+                                    <th class="text-start text-header_text border-b p-2">Status</th>
+                                    <th class="text-start text-header_text border-b p-2">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="gap-2">
+                                <tr class="mb-3" *ngFor="let visit of displayedData">
+                                    <td class="p-3 border-b border-1">{{visit.visitor.first_name}}</td>
+                                    <td class="p-3 border-b border-1">{{visit.visitor.last_name}}</td>
+                                    <td class="p-3 border-b border-1">@if(visit.visitor.phone_number){+}{{visit.visitor.phone_number}}</td>
+                                    <td class="p-3 border-b border-1 hidden md:table-cell">{{visit.visitor.id_number}}</td>
+                                    <td class="p-3 border-b border-1" [ngClass]="visit.visitor.blacklisted?'text-red-500':'text-green-500'">@if(visit.visitor.blacklisted){Blacklisted}@if(!visit.visitor.blacklisted){Active}</td>
+                                    <td class="p-3 border-b border-1" (click)="details(visit.visitor.id)"><span class="underline underline-offset-2 cursor-pointer font-medium">View</span></td>
+                                </tr>
+                                @if(visits.length === 0 && !showSpinner){
+                                    <tr>
+                                        <td colspan="10" class="text-start p-5"> <p class="font-semibold">No records found</p></td>
+                                    </tr>
+                                }
+                    
+                                @if(showSpinner){
+                                    <tr class="p-5 text-center">
+                                        <td colspan="10" class="text-start p-5">
+                                            <app-spinner [text]="'Loading'"></app-spinner>
+                                        </td>
+                                    </tr>
+                                }
+                                
+                                
+                            </tbody>
+                        </table>
+                        
+                        @if(showPag){
+                            <app-paginator
+                                [totalItems]="visits.length"
+                                [pageSize]="pageSize"
+                                [currentPage]="currentPage"
+                                (pageChange)="onPageChange($event)"
+                             />
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

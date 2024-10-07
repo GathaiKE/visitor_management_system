@@ -1,0 +1,107 @@
+<div class="flex flex-row">
+    <app-sidenav></app-sidenav>
+    <div class="flex flex-col w-full md:ml-60 min-h-screen">
+        <app-header></app-header>
+        <div class="flex flex-col gap-4 w-full h-full bg-primary-light p-5 md:py-24">
+            @if(showSpinner === false && building !== null){
+                <button class="w-fit" (click)="goBack()">Back</button>
+                <div class="flex flex-col w-full h-fit rounded-lg bg-white p-8 gap-8">
+                    <div class="flex justify-between w-full items-center">
+                        <div class="flex flex-col w-fit h-full gap-4">
+                            <span class="text-3xl text-primary-strong">{{building.building_name}} </span>
+                            <span class="text-gray-500">{{building.organization?.organization_name}}</span>
+                        </div>
+                        <div class="flex flex-col w-fit h-full">
+                            <button (click)="openUpdateBuildingForm()">Edit building details</button>
+                        </div>
+                    </div>
+                    <div class="flex w-full">
+                        <div class="border-t-2 border-primary-strong w-full"></div>
+                    </div>
+                    <div class="flex gap-8 w-full h-fit px-10">
+                        <span class="flex flex-col gap-2 w-fit h-fit">
+                            <span class="flex flex-col gap-2 w-fit h-fit">
+                                <span class="flex gap-2 items-center">
+                                    <img src="../../../../assets/icons/location.png" class="w-5">
+                                    <span class="">Location</span>
+                                </span>
+                                <span class="mx-auto text-gray-500">{{building.location}}</span>
+                            </span>
+                        </span>
+                        <span class="flex flex-col gap-2 w-fit h-fit">
+                            <span class="flex gap-2 items-center">
+                                <img src="../../../../../assets/icons/status.png" class="w-5">
+                                <span class="">Status<span class="text-red-500">*</span></span>
+                            </span>
+                            <span class="mx-auto text-green-500">Active</span>
+                        </span>
+                        <span class="flex flex-col gap-2 w-fit h-fit">
+                            <span class="flex gap-2 items-center">
+                                <img src="../../../../../assets/icons/admins.png" class="w-5">
+                                <span class="">Admin</span>
+                            </span>
+                            <span class="mx-auto text-gray-500">Building Admin</span>
+                        </span>
+                        <span class="flex flex-col gap-2 w-fit h-fit">
+                            <span class="flex gap-2 items-center">
+                                <img src="../../../../../assets/icons/floors.png" class="w-5">
+                                <span class="">Floors <span class="text-red-500">*</span></span>
+                            </span>
+                            <span class="mx-auto text-gray-500">{{building.floors}}</span>
+                        </span>
+                    </div>
+                </div>
+                    <span class="text-md font-semibold px-6 my-5">Building Offices</span>
+                    <div class="flex flex-col bg-white p-8 gap-8 rounded-2xl h-full">
+                        <div class="flex justify-end w-full">
+                            <button (click)="openOfficeRegisterForm()">New Office</button>
+                        </div>
+        
+                        <div class="flex w-full">
+                            <div class="border-t-2 border-primary-strong w-full"></div>
+                        </div>
+                        <table>
+                            <thead class="mb-3">
+                                <tr class="text-header_text border-b-2">
+                                    <th class="text-start">Office</th>
+                                    <th class="text-start hidden md:table-cell">Floor</th>
+                                    <th class="text-start">Building</th>
+                                    <th class="text-start hidden md:table-cell">Organization</th>
+                                    <!-- <th class="text-start">Actions</th> -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let office of displayedData">
+                                    <td>{{office.office_name}}</td>
+                                    <td class=" hidden md:table-cell">@if(office.floor.floor_number === '0'){Groundfloor} @if(office.floor.floor_number !== '0'){{{office.floor.floor_number}}}</td>
+                                    <td class=" hidden md:table-cell">{{office.floor.building.building_name}}</td>
+                                    <td>{{office.floor.building.organization?.organization_name}}</td>
+                                    <!-- <td><span class="underline underline-offset-2 cursor-pointer font-medium" (click)="openUpdateOfficeForm()">Edit</span></td> -->
+                                </tr>
+                                @if(displayedData.length === 0 && !showSpinner){
+                                    <tr>
+                                        <td colspan="10" class="text-start p-5"> <p class="font-semibold">Building has no registered offices.</p></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+            }
+            @if(showSpinner === true){
+                <app-spinner [text]="'Loading...'"></app-spinner>
+            }
+        </div>
+    </div>
+  </div>
+
+  @if(showForm){
+    <app-form [abort]="'Close'" [submit]="'Register'" (closeEvent)="closeForm()" (formValue)="registerOffice($event)" [title]="'New Office'" [formConfig]="formConfig" [formTemplate]="officeForm" [size]="'fit'" [data]="floors"></app-form>
+}
+
+@if(showUpdateBuildingForm){
+    <app-dual-row-form [abort]="'Close'" [submit]="'Update Building'" (closeEvent)="closeUpdateBuildingForm()" (formValue)="updateBuilding($event)" [title]="'Update Building'" [formConfig]="updateBuildingFormConfig" [formTemplate]="updateBuildingForm" [size]="'fit'" [data]="organizations"></app-dual-row-form>
+}
+
+<!-- @if(showUpdateOfficeForm){
+    <app-form [abort]="'Close'" [submit]="'Update'" (closeEvent)="closeUpdateOfficeForm()" (formValue)="updateOffice($event)" [title]="'Update Office'" [formConfig]="updateOfficeFormConfig" [formTemplate]="updateOfficeForm" [size]="'fit'" [data]="floors"></app-form>
+} -->

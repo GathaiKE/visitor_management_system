@@ -1,0 +1,36 @@
+<div
+  class="fixed rounded-xl flex flex-col items-center z-40 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-11/12 md:w-{{size}} bg-white border-alive p-3 md:p-5 text-sm md:text-base">
+  <div class="flex w-full justify-between gap-4 text-md mb-3">
+    <h1 class="h-full w-fit py-2 border-b-primary-strong border-b-4 text-base md:text-md text-header_text">{{ title }}</h1>
+  </div>
+  <div class="mb-5 flex justify-center items-center w-full">
+    <form [formGroup]="formTemplate" (ngSubmit)="submitForm()" class="flex flex-col gap-3">
+        <ng-container *ngFor="let control of controls">
+          <ng-container [ngSwitch]="formConfig[control.key].type">
+            <div class="flex flex-col gap-2 w-full md:gap-3" [ngClass]="{'items-start': formConfig[control.key].type === 'checkbox'}">
+              <label [for]="control.key" class="text-form_label">{{ formConfig[control.key].label }}</label>
+              <input *ngSwitchCase="'text'" [formControlName]="control.key" [id]="control.key" class="text-header_text outline-header_text">
+              <input *ngSwitchCase="'email'" [formControlName]="control.key" [id]="control.key" type="email" class="text-header_text outline-header_text">
+              <input *ngSwitchCase="'password'" [formControlName]="control.key" type="password" [id]="control.key" class="text-header_text outline-header_text">
+              <input *ngSwitchCase="'number'" [formControlName]="control.key" [id]="control.key" class="text-header_text outline-header_text" type="number">
+              <input *ngSwitchCase="'date'" [formControlName]="control.key" [id]="control.key" class="text-header_text outline-header_text" type="date">
+              <input *ngSwitchCase="'checkbox'" [formControlName]="control.key" [id]="control.key" type="checkbox">
+              <select *ngSwitchCase="'select'" [formControlName]="control.key" [id]="control.key" class="text-header_text outline-header_text">
+                <option *ngFor="let option of formConfig[control.key]?.options" [value]="option.value">{{ option.display }}</option>
+              </select>
+            </div>
+          </ng-container>
+        </ng-container>
+        <ul class="gap-2 flex-col flex p-2 w-full max-h-40 overflow-y-auto">
+          <li class="p-1 hover:cursor-pointer hover:bg-primary-light text-header_text" *ngFor="let record of filteredData$ | async" (click)="selectStaff(record)">
+            {{record.first_name}} {{record.middle_name}} {{record.last_name}}
+          </li>
+        </ul>
+        <div class="w-full flex justify-end gap-3">
+          <button type="button" class="border border-primary-strong text-primary-strong py-1 px-5 h-fit text-sm bg-white active:text-white active:bg-primary-strong md:text-base" (click)="closeForm()">{{ abort }}</button>
+          <button type="submit" class="border-primary-strong bg-primary-strong active:text-primary-strong text-white py-1 px-5 h-fit text-sm active:bg-white md:text-base">{{ submit }}</button>
+        </div>
+      </form>
+  </div>
+</div>
+<div class="fixed inset-0 bg-backdrop z-30" (click)="closeForm()"></div>

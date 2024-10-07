@@ -1,0 +1,26 @@
+<div class="w-full h-fit bg-primary-medium p-8">
+    <div class="flex justify-center items-center">
+        <p>&#064;{{year}} Cintelcore AMS Powered by <img src="../../../assets/images/limitless-logo.png" class="inline-block w-20 cursor-pointer"></p>
+    </div>
+    <div class="flex items-center justify-center my-4">
+        <div class="w-9/12 border-t border-gray-300"></div>
+    </div>
+    <div class="flex flex-col text-start items-center justify-start h-fit text-sm p-3 w-full gap-3 mt-10 md:flex-row md:justify-center md:text-center">
+        <span class="flex gap-2 items-center w-fit">
+            <img src="../../../../assets/images/phone_icon.png" alt="Tel" class="w-5">
+            <span *ngFor="let contact of contacts" class="cursor-pointer hover:text-primary-light">+254{{contact}} /</span>
+        </span>
+        <span class="flex gap-2 items-center w-fit">
+            <img src="../../../../assets/images/email_icon.png" alt="Email" class="w-5">
+            <span class="cursor-pointer hover:text-primary-light">{{email}}</span>
+        </span>
+        <span class="flex gap-2 items-center w-fit">
+            <img src="../../../../assets/images/web_icon.png" alt="Site" class="w-5">
+            <span class="cursor-pointer hover:text-primary-light">{{link}}</span>
+        </span>
+        <span class="flex gap-2 items-center w-fit">
+            <img src="../../../../assets/images/location_icon.png" alt="Location" class="w-5">
+            <span class="cursor-pointer hover:text-primary-light">{{location}}</span>
+        </span>
+    </div>
+</div>

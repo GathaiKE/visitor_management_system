@@ -1,0 +1,98 @@
+<div class="flex flex-row">
+    <app-sidenav></app-sidenav>
+    <div class="flex flex-col w-full md:ml-60 min-h-screen">
+        <app-header></app-header>
+        <div class="flex flex-col gap-4 w-full h-full bg-primary-light p-5 md:py-24">
+            
+            <span class="w-full h-fit items-center rounded-lg p-4 bg-white flex flex-col gap-3 md:flex-row md:p-6">
+                <span class="bg-primary-light rounded-full justify-center items-center p-4 w-fit hidden md:flex">
+                    <img src="../../../../assets/icons/user.png" alt="User">
+                </span>
+                <span class="h-full w-full flex flex-col gap-3 items-center">
+                    <span class="md:text-md self-start">Payments</span>
+                    <span class="text-primary-strong text-sm self-start md:text-base">Payments made to Cintelcore.</span>
+                </span>
+                <span class="flex justify-start md:justify-center w-full md:w-fit">
+                    <button class="p-2 bg-primary-strong text-white border text-sm text-center border-primary-strong active:bg-white active:text-primary-strong rounded-lg w-32" (click)="openForm()">Record Payment</button>
+                </span>
+            </span>
+            <div class="flex flex-col w-full gap-2">
+                <div class="flex flex-col gap-2 h-full w-full bg-white rounded-xl p-2 md:py-2 md:px-4">
+                    <span class="w-full p-3 text-sm flex justify-between">
+                        <input type="p-2 rounded-lg" placeholder="Search here">
+                        <input type="date" class="outline-header_text text-header_text" placeholder="mm/dd/yyyy">
+                    </span>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="text-start text-header_text border-b p-2">Transaction</th>
+                                <th class="text-start text-header_text border-b p-2">Payment Date</th>
+                                <th class="text-start text-header_text border-b p-2">Amount</th>
+                                <th class="text-start text-header_text border-b p-2 hidden md:table-cell">Receipt No.</th>
+                                <th class="text-start text-header_text border-b p-2 hidden md:table-cell">Payment Method</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-base">
+                            <tr class="mb-3">
+                                <td class="p-3 border-b border-1 ">01</td>
+                                <td class="p-3 border-b border-1">10 May 2024</td>
+                                <td class="p-3 border-b border-1">10000</td>
+                                <td class="p-3 border-b border-1 hidden md:table-cell">RCPT-666356</td>
+                                <td class="p-3 border-b border-1 hidden md:table-cell">CARD</td>
+                            </tr>
+                            <tr class="mb-3">
+                                <td class="p-3 border-b border-1 ">02</td>
+                                <td class="p-3 border-b border-1">10 April 2024</td>
+                                <td class="p-3 border-b border-1">10000</td>
+                                <td class="p-3 border-b border-1 hidden md:table-cell">RCPT-21558</td>
+                                <td class="p-3 border-b border-1 hidden md:table-cell">M-PESA</td>
+                            </tr>
+                            <tr class="mb-3">
+                                <td class="p-3 border-b border-1 ">03</td>
+                                <td class="p-3 border-b border-1">4 March 2024</td>
+                                <td class="p-3 border-b border-1">10000</td>
+                                <td class="p-3 border-b border-1 hidden md:table-cell">RCPT-845212</td>
+                                <td class="p-3 border-b border-1 hidden md:table-cell">CARD</td>
+                            </tr>
+                            <tr class="mb-3">
+                                <td class="p-3 border-b border-1 ">04</td>
+                                <td class="p-3 border-b border-1">10 February 2024</td>
+                                <td class="p-3 border-b border-1">10000</td>
+                                <td class="p-3 border-b border-1 hidden md:table-cell">RCPT-6224812</td>
+                                <td class="p-3 border-b border-1 hidden md:table-cell">CARD</td>
+                            </tr>
+                            <tr class="mb-3">
+                                <td class="p-3 border-b border-1 ">05</td>
+                                <td class="p-3 border-b border-1">10 Janyary 2024</td>
+                                <td class="p-3 border-b border-1">10000</td>
+                                <td class="p-3 border-b border-1 hidden md:table-cell">RCPT-977686</td>
+                                <td class="p-3 border-b border-1 hidden md:table-cell">M-PESA</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="flex flex-nowrap w-full justify-center gap-3 text-base">
+                        <span class="flex flex-row w-fit items-center gap-2 cursor-pointer">
+                            <img src="../../../../assets/icons/chevron-back-outline.svg" alt="" class="w-4 h-4">
+                            <span>Previous</span>
+                        </span>
+                        <span class="flex flex-row gap-2">
+                            <span class="p-1 rounded bg-primary-strong test-white cursor-pointer">1</span>
+                            <span class="p-1 rounded cursor-pointer">2</span>
+                            <span class="p-1 rounded cursor-pointer">3</span>
+                            <span class="p-1 rounded cursor-pointer">4</span>
+                        </span>
+                        <span class="flex flex-row w-fit items-center gap-2 cursor-pointer">
+                            <span>Next</span>
+                            <img src="../../../../assets/icons/chevron-forward-outline.svg" alt="" class="w-4 h-4">
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+  </div>
+
+  @if(showForm){
+    <app-dual-row-form [abort]="'Close'" [submit]="'Record'" (closeEvent)="closeForm()" (formValue)="register($event)" [title]="'Record Payment'" [formConfig]="formConfig" [formTemplate]="form" [size]="'fit'" [data]="paymentMethods" [organizations]="organizations"></app-dual-row-form>
+}

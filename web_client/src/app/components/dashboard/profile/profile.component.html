@@ -1,0 +1,137 @@
+<div class="flex flex-row">
+    <app-sidenav></app-sidenav>
+    <div class="flex flex-col w-full md:ml-60 min-h-screen">
+        <app-header></app-header>
+        <div class="flex flex-col gap-4 w-full h-full bg-primary-light p-5 md:py-24">
+            @if(showSpinner === false && user !== null){
+                <button class="w-fit" (click)="goBack()">Back</button>
+                <div class="flex flex-col w-full h-fit rounded-lg bg-white p-8 gap-8">
+                    <div class="flex justify-between w-full items-center">
+                        <div class="flex flex-col w-fit h-full gap-4">
+                            <span class="text-3xl text-primary-strong">{{user.first_name}} {{user.middle_name}} {{user.last_name}} </span>
+                            @if(user.is_superuser){
+                                <span class="text-gray-500">Default Super User</span>
+                            }
+                            
+                            @if(user.is_assistant_superuser){
+                                <span class="text-gray-500">Assistant Super User</span>
+                            }
+
+                            @if(user.is_admin){
+                                <span class="text-gray-500">Organization Administrator</span>
+                                <span class="text-gray-500">{{user.organization?.organization_name}}</span>
+                            }
+
+                            @if(user.is_staff){
+                                <span class="text-gray-500">Building Administrator</span>
+                                <span class="text-gray-500">{{user.building?.building_name}}</span>
+                            }
+                        </div>
+                        <div class="flex flex-col w-fit h-full">
+                            <button>Change Password</button>
+                        </div>
+                    </div>
+                    <div class="flex w-full">
+                        <div class="border-t-2 border-primary-strong w-full"></div>
+                    </div>
+                    <div class="flex gap-8 w-full h-fit px-10">
+                        <span class="flex flex-col gap-2 w-fit h-fit">
+                            <span class="flex gap-2 items-center">
+                                <img src="../../../../assets/icons/mail.png" class="w-5">
+                                <span class="">Email</span>
+                            </span>
+                            <span class="mx-auto text-gray-500">{{user.email}}</span>
+                        </span>
+                        <span class="flex flex-col gap-2 w-fit h-fit">
+                            <span class="flex gap-2 items-center">
+                                <img src="../../../../assets/icons/phone.png" class="w-5">
+                                <span class="">Phone</span>
+                            </span>
+                            <span class="mx-auto text-gray-500">+{{user.phone_number}}</span>
+                        </span>
+                        <span class="flex flex-col gap-2 w-fit h-fit">
+                            <span class="flex gap-2 items-center">
+                                <img src="../../../../assets/icons/id_card.png" class="w-5">
+                                <span class="">Id Number</span>
+                            </span>
+                            <span class="mx-auto text-gray-500">{{user.id_number}}</span>
+                        </span>
+                        <span class="flex flex-col gap-2 w-fit h-fit">
+                            <span class="flex gap-2 items-center">
+                                <img src="../../../../assets/icons/location.png" class="w-5">
+                                <span class="">Address</span>
+                            </span>
+                            <span class="mx-auto text-gray-500">{{user.address}}</span>
+                        </span>
+                    </div>
+                </div>
+                @if(user.is_admin){
+                    <span class="text-md font-semibold px-6 my-5">Assigned Organization</span>
+                    <div class="flex flex-col bg-white p-8 gap-8 rounded-2xl h-full">
+                        <div class="flex w-full">
+                            <div class="border-t-2 border-primary-strong w-full"></div>
+                        </div>
+                        <table>
+                            <thead class="mb-3">
+                                <tr class="text-header_text border-b-2">
+                                    <th class="text-start">Organization Number</th>
+                                    <th class="text-start hidden md:table-cell">Organization Name</th>
+                                    <th class="text-start hidden md:table-cell">Organization Email</th>
+                                    <th class="text-start">Organization Phone</th>
+                                    <th class="text-start">Location</th>
+                                    <th class="text-start">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{user.organization?.organization_number}}</td>
+                                    <td class=" hidden md:table-cell">{{user.organization?.organization_name}}</td>
+                                    <td class=" hidden md:table-cell">{{user.organization?.email}}</td>
+                                    <td>{{user.organization?.phone_number}}</td>
+                                    <td>{{user.organization?.address}}</td>
+                                    <td><span class="underline underline-offset-2 cursor-pointer font-medium">View</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                @if(user.is_staff){
+                    <span class="text-md font-semibold px-6 my-5">Assigned Building</span>
+                    <div class="flex flex-col bg-white p-8 gap-8 rounded-2xl h-full">
+                        <div class="flex w-full">
+                            <div class="border-t-2 border-primary-strong w-full"></div>
+                        </div>
+                        <table>
+                            <thead class="mb-3">
+                                <tr class="text-header_text border-b-2">
+                                    <th class="text-start hidden md:table-cell">Building Name</th>
+                                    <th class="text-start hidden md:table-cell">Organization</th>
+                                    <th class="text-start">Floors</th>
+                                    <th class="text-start">Location</th>
+                                    <th class="text-start">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class=" hidden md:table-cell">{{user.building?.building_name}}</td>
+                                    <td class=" hidden md:table-cell">{{user.organization?.organization_name}}</td>
+                                    <td>{{user.building?.floors}}</td>
+                                    <td>{{user.building?.location}}</td>
+                                    <td><span class="underline underline-offset-2 cursor-pointer font-medium">View</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                @if(user.is_superuser || user.is_assistant_superuser){
+                    <div class="flex flex-col w-full h-fit rounded-lg bg-white p-8 gap-8">
+                        <span class="italic font-medium">User has no assigned organizations or buildings</span>
+                    </div>
+                }
+            }
+            @if(showSpinner === true){
+                <app-spinner [text]="'Loading...'"></app-spinner>
+            }
+        </div>
+    </div>
+  </div>

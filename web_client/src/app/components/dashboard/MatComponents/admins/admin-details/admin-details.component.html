@@ -1,0 +1,44 @@
+<div class="w-full h-full flex flex-col justify-center items-center gap-3">
+    <span class="font-bold text-lg">Admin Details</span>
+    <div class="flex justify-Between h-fit w-10/12 items-center">
+        <span class="flex flex-col w-1/2 items-start justify-between gap-4">
+            <span class="flex gap-4" *ngIf="admin.first_name">
+                <label for="first_name" class="text-gray-600 font-bold">First Name</label>
+                <span class='font-bold'>{{admin.first_name}}</span>
+            </span>
+            <span class="flex gap-4">
+                <label for="user_name" class="text-gray-600 font-bold" *ngIf="admin.username">Username</label>
+                <span class='font-bold'>{{admin.username}}</span>
+            </span>
+            <span class="flex gap-4">
+                <label for="organization" class="text-gray-600 font-bold" *ngIf="admin.organization">Organization</label>
+                <span class='font-bold'>{{admin.organization?.organization_name}}</span>
+            </span>
+            <span class="flex gap-4">
+                <label for="password" class="text-gray-600 font-bold" *ngIf="admin.date_joined">Date Joined</label>
+                <span class='font-bold'>{{admin.date_joined | date:'short'}}</span>
+            </span>
+        </span>
+        <span class="flex flex-col w-1/2 items-start justify-between gap-4">
+            <span class="flex gap-4">
+                <label for="last_name" class="text-gray-600 font-bold" *ngIf="admin.last_name">Last Name</label>
+                <span class='font-bold'>{{admin.last_name}}</span>
+            </span>
+            <span class="flex gap-4">
+                <label for="email" class="text-gray-600 font-bold" *ngIf="admin.email">Email</label>
+                <span class='font-bold'>{{admin.email}}</span>
+            </span>
+            <span class="flex gap-4">
+                <label for="building" class="text-gray-600 font-bold" *ngIf="admin.building">Building </label>
+                <span class='font-bold'>{{admin.building?.building_name}}</span>
+            </span>
+            <span class="flex gap-4">
+                <label for="telephone" class="text-gray-600 font-bold" *ngIf="admin.phone_number">Telephone</label>
+                <span class='font-bold'>{{admin.phone_number}}</span>
+            </span>
+        </span>
+    </div>
+    <span class="flex w-10/12 justify-right">
+        <button (click)="cancel()">Cancel</button>
+    </span>
+</div>

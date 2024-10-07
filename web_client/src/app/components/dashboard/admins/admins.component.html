@@ -1,0 +1,51 @@
+<div class="flex flex-row">
+  <app-sidenav></app-sidenav>
+  <div class="flex flex-col w-full md:ml-60 min-h-screen">
+      <app-header></app-header>
+      <div class="flex flex-col gap-4 w-full h-full bg-primary-light p-5 md:py-24">
+          <span class="w-full h-fit items-center rounded-lg p-4 flex justify-start gap-16 md:p-8">
+            <div class="rounded-2xl flex flex-col w-fit py-3 cursor-pointer" [ngClass]="activeRoute('admins/assistant/all') || activeRoute('admins/assistant/active') || activeRoute('admins/assistant/inactive')?'bg-primary-strong text-gray-300':' bg-white'" (click)="navigate('admins/assistant/all')">
+                <span class="flex justify-evenly">
+                    <span class="text-active_link p-6">Total Number</span>
+                    <span class="text-5xl flex justify-center items-center py-2 px-4">{{assistant}}</span>
+                </span>
+                <div class="flex items-center justify-center my-2">
+                    <div class="w-11/12 border-t border-gray-300"></div>
+                </div>
+                <span class=" px-6">
+                    <p>Assistant Admins</p>
+                </span>
+              </div>
+
+
+              <div class="rounded-2xl flex flex-col w-fit py-3 cursor-pointer" [ngClass]="activeRoute('admins/organization/all') || activeRoute('admins/organization/active') || activeRoute('admins/organization/inactive')?'bg-primary-strong text-gray-300':' bg-white'" (click)="navigate('admins/organization/all')">
+                <span class="flex justify-evenly">
+                    <span class="p-6">Total Number</span>
+                    <span class="text-5xl flex justify-center items-center py-2 px-4">{{organization}}</span>
+                </span>
+                <div class="flex items-center justify-center my-2">
+                    <div class="w-11/12 border-t border-gray-300"></div>
+                </div>
+                <span class=" px-6">
+                    <p>Organization Admins</p>
+                </span>
+              </div>
+
+
+              <div class="rounded-2xl flex flex-col w-fit py-3 cursor-pointer" [ngClass]="activeRoute('admins/building/all') || activeRoute('admins/building/active') || activeRoute('admins/building/inactive')?'bg-primary-strong text-gray-300':' bg-white'" (click)="navigate('admins/building/all')">
+                <span class="flex justify-evenly">
+                    <span class="text-active_link p-6">Total Number</span>
+                    <span class="text-5xl flex justify-center items-center py-2 px-4">{{building}}</span>
+                </span>
+                <div class="flex items-center justify-center my-2">
+                    <div class="w-11/12 border-t border-gray-300"></div>
+                </div>
+                <span class=" px-6">
+                    <p>Building Admins</p>
+                </span>
+              </div>
+          </span>
+          <router-outlet></router-outlet>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,51 @@
+<div class="flex flex-col gap-2 h-full w-full bg-white rounded-xl p-2 md:py-2 md:px-4">
+    <span class="w-full h-fit flex justify-between p-3 text-sm items-center md:text-base">
+        <input type="text" class="p-2 rounded-lg h-fit" placeholder="Search here" [(ngModel)]="searchString" (keyup)="filter()"
+            (keydown)="filter()">
+    </span>
+    <table class="text-sm md:text-base">
+        <thead>
+            <tr class="text-nav_text">
+                <th class="text-start text-header_text border-b p-2">Name</th>
+                <th class="text-start text-header_text border-b p-2 hidden md:table-cell">Floors</th>
+                <th class="text-start text-header_text border-b p-2 hidden md:table-cell">Location</th>
+                <th class="text-start text-header_text border-b p-2 hidden md:table-cell">Organization</th>
+                <th class="text-start text-header_text border-b p-2">Actions</th>
+            </tr>
+        </thead>
+        <tbody class="gap-2">
+            <tr class="mb-3" *ngFor="let building of displayedData">
+                <td class="p-3 border-b border-1">{{building.building_name}}</td>
+                <td class="p-3 border-b border-1">{{building.floors}}</td>
+                <td class="p-3 border-b border-1 hidden md:table-cell">{{building.location}}</td>
+                <td class="p-3 border-b border-1 hidden md:table-cell">{{building.organization?.organization_name}}</td>
+                <td class="p-3 border-b border-1" (click)="details(building.id)"><span class="underline underline-offset-2 cursor-pointer font-medium">View</span></td>
+            </tr>
+            @if(displayedData.length === 0 && !showSpinner){
+                <tr>
+                    <td colspan="10" class="text-start p-5"> <p class="font-semibold">No records found</p></td>
+                </tr>
+            }
+
+            @if(showSpinner){
+                <tr class="p-5 text-center">
+                    <td colspan="10" class="text-start p-5">
+                        <app-spinner [text]="'Loading'"></app-spinner>
+                    </td>
+                </tr>
+            }
+            
+            
+        </tbody>
+    </table>
+    
+    @if(showPag){
+        <app-paginator
+            [totalItems]="buildings.length"
+            [pageSize]="pageSize"
+            [currentPage]="currentPage"
+            (pageChange)="onPageChange($event)"
+         />
+    }
+</div>
+

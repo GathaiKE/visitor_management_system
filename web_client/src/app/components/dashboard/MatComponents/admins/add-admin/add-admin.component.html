@@ -1,0 +1,143 @@
+<div class="flex flex-col justify-center items-center w-full h-full gap-2" *ngIf="showAsisstantForm">
+    <span class="font-bold text-lg">Register {{adminValue()}} Admin</span>
+    <form action="submit" [formGroup]="registerForm" class="flex flex-col gap-3">
+        <span class="flex justify-between gap-3">
+            <span class="gap-2 flex flex-col">
+                <label for="first_name">First Name</label>
+                <input type="text" placeholder="John" formControlName="first_name">
+            </span>
+            <span class="gap-2 flex flex-col">
+                <label for="last_name">Last Name</label>
+                <input type="text" placeholder="Doe" formControlName="last_name">
+            </span>
+        </span>
+        <span class="flex justify-between gap-3">
+            <span class="gap-2 flex flex-col">
+                <label for="user_name">Username</label>
+                <input type="text" placeholder="@JohnDoe" formControlName="username">
+            </span>
+            <span class="gap-2 flex flex-col">
+                <label for="email">Email</label>
+                <input type="text" placeholder="johndoe@cintelcore.com" formControlName="email">
+            </span>
+        </span>
+        <span class="flex justify-between gap-3">
+            <span class="flex gap-2 flex-col">
+                <label for="password">Access Code</label>
+                <input type="text" placeholder="Choose a strong code" formControlName="password">
+            </span>
+            <span class="flex gap-2 flex-col">
+                <label for="telephone">Telephone</label>
+                <input type="text" placeholder="+254710 000 000/0710 000 000" formControlName="telephone">
+            </span>
+        </span>
+        <span class="flex gap-2">
+            <button (click)="register()">Add</button>
+            <button (click)="cancel()">Cancel</button>
+        </span>
+    </form>
+</div>
+
+
+<div class="flex flex-col justify-center items-center w-full h-full gap-2" *ngIf="showClientForm">
+    <span class="font-bold text-lg">Register {{adminValue()}} Admin</span>
+    <form action="submit" [formGroup]="registerForm" class="flex flex-col gap-3">
+        <span  class="flex justify-between gap-3">
+            <span class="gap-2 flex flex-col">
+                <label for="organization">Organization</label>
+                <select formControlName="organization">
+                    <option *ngFor="let organization of organizations" [value]="organization.id">{{organization.organization_name}}</option>
+                </select>
+            </span>
+        </span>
+        <span class="flex justify-between gap-3">
+            <span class="gap-2 flex flex-col">
+                <label for="first_name">First Name</label>
+                <input type="text" placeholder="John" formControlName="first_name">
+            </span>
+            <span class="gap-2 flex flex-col">
+                <label for="last_name">Last Name</label>
+                <input type="text" placeholder="Doe" formControlName="last_name">
+            </span>
+        </span>
+        <span class="flex justify-between gap-3">
+            <span class="gap-2 flex flex-col">
+                <label for="user_name">Username</label>
+                <input type="text" placeholder="@JohnDoe" formControlName="username">
+            </span>
+            <span class="gap-2 flex flex-col">
+                <label for="email">Email</label>
+                <input type="text" placeholder="johndoe@cintelcore.com" formControlName="email">
+            </span>
+        </span>
+        <span class="flex justify-between gap-3">
+            <span class="gap-2 flex flex-col">
+                <label for="password">Access Code</label>
+                <input type="text" placeholder="Choose a strong code" formControlName="password">
+            </span>
+            <span class="gap-2 flex flex-col">
+                <label for="telephone">Telephone</label>
+                <input type="text" placeholder="+254710 000 000/0710 000 000" formControlName="telephone">
+            </span>
+        </span>
+        <span class="flex gap-2">
+            <button (click)="register()">Add</button>
+            <button (click)="cancel()">Cancel</button>
+        </span>
+    </form>
+</div>
+
+<div class="flex flex-col justify-center items-center w-full h-full gap-2" *ngIf="showBuildingForm">
+    <span class="font-bold text-lg">Register {{adminValue()}} Admin</span>
+    <form action="submit" [formGroup]="registerForm"  class="flex flex-col gap-3">
+        <span class="flex justify-between gap-3">
+            <span class="gap-2 flex flex-col">
+                <label for="first_name">First Name</label>
+                <input type="text" placeholder="John" formControlName="first_name">
+            </span>
+            <span class="gap-2 flex flex-col">
+                <label for="last_name">Last Name</label>
+                <input type="text" placeholder="Doe" formControlName="last_name">
+            </span>
+        </span>
+        <span class="flex justify-between gap-3">
+            <span class="gap-2 flex flex-col">
+                <label for="user_name">Username</label>
+                <input type="text" placeholder="@JohnDoe" formControlName="username">
+            </span>
+            <span class="gap-2 flex flex-col">
+                <label for="email">Email</label>
+                <input type="text" placeholder="johndoe@cintelcore.com" formControlName="email">
+            </span>
+        </span>
+        <span class="flex gap-3">
+            <span class="gap-2 flex flex-col" *ngIf="activeUser">
+                <label for="organization">Organization</label>
+                <select formControlName="organization" (change)="loadBuildings()">
+                    <option *ngFor="let organization of organizations" [value]="organization.id">{{organization.organization_name}}</option>
+                </select>
+            </span>
+            <span class="gap-2 flex flex-col">
+                <label for="building">Building </label>
+                <select formControlName="building" [disabled]="!enableBuildingsSelect">
+                    <option *ngFor='let building of buildings' [value]="building.id">{{building.building_name}}</option>
+                </select>
+            </span>
+        </span>
+        <span class="flex justify-between gap-3">
+            <span class="gap-2 flex flex-col">
+                <label for="password">Access Code</label>
+                <input type="text" placeholder="Choose a strong code" formControlName="password">
+            </span>
+            <span class="gap-2 flex flex-col">
+                <label for="telephone">Telephone</label>
+                <input type="text" placeholder="+254710 000 000/0710 000 000" formControlName="telephone">
+            </span>
+        </span>
+        <span class="flex gap-2">
+            <button (click)="register()">Add</button>
+            <button (click)="cancel()">Cancel</button>
+        </span>
+    </form>
+</div>
+

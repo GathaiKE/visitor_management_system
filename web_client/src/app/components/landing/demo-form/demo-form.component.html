@@ -1,0 +1,42 @@
+<div
+  class="fixed rounded-xl flex flex-row z-40 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-11/12 md:w-1/2 bg-white border-alive text-sm md:text-base">
+  <div class="flex flex-col justify-between w-4/12 pic">
+    <span class="text-6xl text-white font-extrabold bg-backdrop_low text-end pr-6 pt-8">Book a</span>
+    <div class="flex flex-col w-full h-full bg-gradient-to-b from-backdrop_low to-backdrop_high text-white justify-end md:px-8 md:py-16">
+      <h2 class="font-bold text-lg">What you will get from 
+        this demo</h2>
+        <ul>
+          <li class="leading-loose">A clear understanding of the product</li>
+          <li class="leading-loose">Benefits of using the product</li>
+          <li class="leading-loose">Pricing structure</li>
+        </ul>
+    </div>
+  </div>
+  <div class="mb-5 flex flex-col justify-between items-center w-8/12 gap-10 p-3 md:p-8">
+    <span class="text-6xl w-full text-primary-strong font-extrabold text-start -ml-3">demo</span>
+    <p class="font-bold text-xl text-start">Please fill in the form below and well be in touch to arrange a date that suits you</p>
+    <form [formGroup]="formTemplate" (ngSubmit)="submitForm()" class="flex flex-col gap-3 w-full">
+        <ng-container *ngFor="let control of controls">
+          <ng-container [ngSwitch]="formConfig[control.key].type">
+            <div class="flex flex-col gap-2 w-full md:gap-3" [ngClass]="{'items-start': formConfig[control.key].type === 'checkbox'}">
+              <label [for]="control.key" class="text-form_label">{{ formConfig[control.key].label }}</label>
+              <input *ngSwitchCase="'text'" [formControlName]="control.key" [id]="control.key" class="text-header_text outline-header_text">
+              <input *ngSwitchCase="'email'" [formControlName]="control.key" [id]="control.key" class="text-header_text outline-header_text">
+              <input *ngSwitchCase="'number'" [formControlName]="control.key" [id]="control.key" class="text-header_text outline-header_text" type="number">
+              <input *ngSwitchCase="'date'" [formControlName]="control.key" [id]="control.key" class="text-header_text outline-header_text" type="date">
+              <input *ngSwitchCase="'checkbox'" [formControlName]="control.key" [id]="control.key" type="checkbox">
+              <select *ngSwitchCase="'select'" [formControlName]="control.key" [id]="control.key" class="text-header_text outline-header_text">
+                <option *ngFor="let option of formConfig[control.key]?.options" [value]="option.value">{{ option.display }}</option>
+              </select>
+              <textarea *ngSwitchCase="'textarea'" rows="6" class="resize-none"></textarea>
+            </div>
+          </ng-container>
+        </ng-container>
+        <div class="w-full flex justify-end gap-3">
+          <!-- <button type="button" class="border border-primary-dark text-primary-dark py-1 px-5 h-fit text-sm bg-white active:text-white active:bg-primary-dark md:text-base" (click)="closeForm()">{{ abort }}</button> -->
+          <button type="submit" class="border-primary-dark bg-primary-strong active:text-primary-strong text-white w-full py-3 px-5 h-fit text-sm active:bg-white md:text-base"><span class="text-center w-full font-bold">{{ submit }}</span></button>
+        </div>
+      </form>
+  </div>
+</div>
+<div class="fixed bg-backdrop inset-0 z-30" (click)="closeForm()"></div>

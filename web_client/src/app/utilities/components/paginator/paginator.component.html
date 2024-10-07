@@ -1,0 +1,13 @@
+<div class="flex flex-nowrap w-full justify-center gap-3 text-base">
+    <span class="flex flex-row w-fit items-center gap-2 cursor-pointer active:text-header_active_text" (click)="previousPage()">
+        <img src="../../../../assets/icons/chevron-back-outline.svg" alt="" class="w-4 h-4">
+        <span>Previous</span>
+    </span>
+    <span class="flex flex-row gap-2">
+        <span class="p-1 rounded cursor-pointer" *ngFor="let p of pages" [ngClass]="{'bg-primary-dark text-primary-strong ':currentPage === p}" (click)="changePage(p)">{{p}}</span>
+    </span>
+    <span class="flex flex-row w-fit items-center gap-2 cursor-pointer active:text-header_active_text" (click)="nextPage()">
+        <span>Next</span>
+        <img src="../../../../assets/icons/chevron-forward-outline.svg" alt="" class="w-4 h-4">
+    </span>
+</div>

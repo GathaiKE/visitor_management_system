@@ -1,0 +1,23 @@
+services:
+  server:
+    build:
+      context: .
+    ports:
+      - "8000:80"
+    container_name: cintel-api
+    env_file:
+      - .env
+    volumes:
+      - ./core/user/database/:/app/core/user/database
+      # - .:/app
+    # command: ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx-container
+    volumes:
+      - ./nginx/:/etc/nginx/conf.d
+    ports:
+      - "80:80"
+    depends_on:
+      - server

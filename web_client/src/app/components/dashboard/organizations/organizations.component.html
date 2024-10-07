@@ -1,0 +1,34 @@
+<div class="flex flex-row">
+  <app-sidenav></app-sidenav>
+  <div class="flex flex-col w-full md:ml-60 min-h-screen">
+      <app-header></app-header>
+      <div class="flex flex-col gap-4 w-full h-full bg-primary-light p-5 md:py-24">
+          <span class="w-full h-fit items-center rounded-lg p-4 bg-white flex flex-col gap-3 md:flex-row md:p-6">
+              <span class="bg-primary-light rounded-full justify-center items-center p-4 w-fit hidden md:flex">
+                  <img src="../../../../assets/images/organization_icon.png" alt="Organization">
+              </span>
+              <span class="h-full w-full flex flex-col gap-3 items-center justify-center">
+                  <span class="text-primary-dark text-md font-medium self-start md:text-lg">Welcome to organizations management</span>
+                  <span class="md:text-md self-start">Cintelcore Limited</span>
+              </span>
+              <span class="flex justify-start md:justify-center w-full md:w-fit">
+                  <button class="w-24" (click)="openForm()">New Client</button>
+              </span>
+          </span>
+          <div class="flex flex-col w-full gap-2 md:w-9/12">
+              <span class="text-md font-medium">Organizations List</span>
+              <ul class="w-full h-fit flex gap-2 text-header_text text-sm">
+                  <li class="p-2 cursor-pointer" [ngClass]="activeRoute('organizations/all')?' border-b-primary-strong border-b-4 text-primary-strong': ''" (click)="navigate('organizations/all')">All</li>
+                  <li class="p-2 cursor-pointer" [ngClass]="activeRoute('organizations/active')?' border-b-primary-strong border-b-4 text-primary-strong': ''" (click)="navigate('organizations/active')">Active</li>
+                  <li class="p-2 cursor-pointer" [ngClass]="activeRoute('organizations/inactive')?' border-b-primary-strong border-b-4 text-primary-strong': ''" (click)="navigate('organizations/inactive')">Suspended</li>
+              </ul>
+              <router-outlet></router-outlet>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+@if(showForm){
+    <app-dual-row-form [abort]="'Close'" [submit]="'Register'" (closeEvent)="closeForm()" (formValue)="register($event)" [title]="'New Organization'" [formConfig]="formConfig" [formTemplate]="form" [size]="'fit'"></app-dual-row-form>
+}

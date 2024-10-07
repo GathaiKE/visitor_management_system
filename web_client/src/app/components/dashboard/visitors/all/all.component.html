@@ -1,0 +1,59 @@
+<div class="flex flex-col gap-2 h-full w-full bg-white rounded-xl p-2 md:py-2 md:px-4">
+    <span class="w-full h-fit flex justify-between p-3 text-sm items-center md:text-base">
+        <input type="text" class="p-2 rounded-lg h-fit" placeholder="Search here" [(ngModel)]="searchString" (keyup)="filter()"
+            (keydown)="filter()">
+    </span>
+    <table class="text-sm md:text-base">
+        <thead>
+            <tr class="text-nav_text">
+                <th class="text-start text-header_text border-b p-2">First Name</th>
+                <th class="text-start text-header_text border-b p-2">Last Name</th>
+                <th class="text-start text-header_text border-b p-2 hidden md:table-cell">Phone</th>
+                <th class="text-start text-header_text border-b p-2 hidden md:table-cell">Id Number</th>
+                <th class="text-start text-header_text border-b p-2">Status</th>
+                <th class="text-start text-header_text border-b p-2">Actions</th>
+            </tr>
+        </thead>
+        <tbody class="gap-2">
+            <tr class="mb-3" *ngFor="let visitor of displayedData">
+                <td class="p-3 border-b border-1">{{visitor.first_name}}</td>
+                <td class="p-3 border-b border-1">{{visitor.last_name}}</td>
+                <td class="p-3 border-b border-1">@if(visitor.phone_number){+}{{visitor.phone_number}}</td>
+                <td class="p-3 border-b border-1 hidden md:table-cell">{{visitor.id_number}}</td>
+                <td class="p-3 border-b border-1" [ngClass]="visitor.blacklisted?'text-red-500':'text-green-500'">@if(visitor.blacklisted){Blacklisted}@if(!visitor.blacklisted){Active}</td>
+                <td class="p-3 border-b border-1" (click)="details(visitor.id)"><span class="underline underline-offset-2 cursor-pointer font-medium">View</span></td>
+            </tr>
+            @if(displayedData.length === 0 && !showSpinner){
+                <tr>
+                    <td colspan="10" class="text-start p-5"> <p class="font-semibold">No records found</p></td>
+                </tr>
+            }
+
+            @if(showSpinner){
+                <tr class="p-5 text-center">
+                    <td colspan="10" class="text-start p-5">
+                        <app-spinner [text]="'Loading'"></app-spinner>
+                    </td>
+                </tr>
+            }
+            
+            
+        </tbody>
+    </table>
+    
+    @if(showPag){
+        <app-paginator
+            [totalItems]="visitors.length"
+            [pageSize]="pageSize"
+            [currentPage]="currentPage"
+            (pageChange)="onPageChange($event)"
+         />
+    }
+</div>
+
+@if(showForm){
+    <app-form [formTemplate]="form" [formConfig]="formConfig" (formValue)="getFormValue($event)"
+        (closeEvent)="closeForm()" [submit]="submit" [title]="title" [abort]="abort" [size]="size">
+    </app-form>
+}
+

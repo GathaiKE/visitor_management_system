@@ -1,0 +1,133 @@
+<div class="w-full scroll-smooth">
+    <!-- header  -->
+    <app-landing-header (contactValue)="navTo()"></app-landing-header>
+    <div class="h-screen mx-auto">
+        <!-- Top Section -->
+        <section class="flex flex-col-reverse justify-center bg-primary-light min-h-screen md:px-20 md:py-10">
+            <div class="flex flex-col-reverse gap-12 text-base text-white font-bold h-fit items-center md:gap-0 lg:flex-row md:text-center lg:text-xl">
+                <div class="flex flex-col gap-20 w-full p-2 md:w-1/2 md:p-8">
+                    <div class="flex flex-col gap-12">
+                        <div class="h-full text-black text-lg md:text-5xl text-start">
+                            <p class="leading-normal inline">Discover the future of visitor management with</p> <img src="../../../assets/images/AMS-logocropp.jpg" alt="Cintelcore AMS" class="w-48 md:w-72 ml-6 inline-block">
+                        </div>
+                        <div class="text-gray-500 text-start text-sm md:text-base">
+                            <p>Transform your visitor experience with us by seemlessly intergrting your checkins with our intuitive system to ensure efficient, secure and organized visitor handling.</p>
+                        </div>
+                    </div>
+                    <div class="flex justify-evenly w-full px-6 md:px-0 md:justify-normal md:gap-4 text-sm">
+                        <button class="text-small font-normal md:w-52 md:text-base md:font-medium md:p-3 md:rounded-3xl text-center" (click)="open()"><span class="w-full text-center">Book A Demo</span></button>
+                        <button class="text-small font-normal md:w-52 md:text-base md:font-medium md:p-3 md:rounded-3xl bg-white text-primary-strong text-center active:text-white active:bg-primary-strong" (click)="scrollTo('about')"><span class="w-full text-center">Learn More </span></button>
+                    </div>
+                </div>
+                <span class="h-full leading-loose flex gap-3 flex-col w-full lg:w-1/2 justify-center items-center">
+                    <img src="../../../assets/images/hero.png" alt="" class="w-full lg:w-5/12 md:h-5/12 md:-ml-24 lg:border-4 border-primary-strong md:rounded-3xl">
+                    <img src="../../../assets/images/hero1.png" alt="" class="w-full hidden lg:block lg:w-6/12 lg:h-6/12 lg:ml-20 lg:-mt-40 border-4 border-primary-strong rounded-3xl z-10">
+                </span>
+            </div>
+        </section>
+        <!-- Middle section -->
+        <section class="flex flex-col p-4 md:p-20" id="about">
+            <!-- Benefits Cards -->
+            <div class="flex flex-col gap-8 md:p-20">
+                <span class="text-lg font-bold w-full text-center lg:text-xl">Why Choose to Work With Us?</span>
+                <div class="flex flex-col w-full gap-20 justify-center items-center md:flex-row">
+                    <div class="flex flex-col items-center md:w-3/12 gap-4 shadow-md p-4 rounded-md">
+                        <div class="flex relative items-center justify-center">
+                            <img src="../../../assets/icons/group.png" class="z-10">
+                            <span class="w-7 h-7 md:w-12 md:h-12 icon_bg ml-4 -mt-1 bg-icon_shade absolute md:ml-7"></span>
+                        </div>
+                        <span class="font-bold text-lg">Benefit 1</span>
+                        <p class="text-center text-sm md:text-base">Our membership management software provides full automation of membership renewals and payments.</p>
+                    </div>
+                    <div class="flex flex-col items-center md:w-3/12 gap-4 shadow-md p-4 rounded-md">
+                        <div class="flex relative items-center justify-center">
+                            <img src="../../../assets/icons/building.png" class="z-10">
+                            <span class="w-7 h-7 md:w-12 md:h-12 icon_bg ml-4 -mt-1 bg-icon_shade absolute md:ml-7"></span>
+                        </div>
+                        <span class="font-bold text-lg">Benefit 2</span>
+                        <p class="text-center text-sm md:text-base">Our membership management software provides full automation of membership renewals and payments.</p>
+                    </div>
+                    <div class="flex flex-col items-center md:w-3/12 gap-4 shadow-md p-4 rounded-md">
+                        <div class="flex relative items-center justify-center">
+                            <img src="../../../assets/icons/hand.png" class="z-10">
+                            <span class="w-7 h-7 md:w-12 md:h-12 icon_bg ml-4 -mt-1 bg-icon_shade absolute md:ml-7"></span>
+                        </div>
+                        <span class="font-bold text-lg">Benefit 3</span>
+                        <p class="text-center text-sm md:text-base">Our membership management software provides full automation of membership renewals and payments.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Our Clients -->
+            <div class="flex flex-col items-center p-2 md:p-20">
+                    <div class="flex flex-col justify-center gap-8">
+                        <span class="flex flex-col gap-3 text-center">
+                            <span class="text-lg font-bold w-full lg:text-xl">Some of our Clients</span>
+                            <span>Here are some of the clients we are working with</span>
+                        </span>
+                        <div class="flex flex-row gap-12 justify-center md:gap-24 flex-wrap">
+                            <img src="../../../assets/icons/client.png" alt="" class="cursor pointer">
+                            <img src="../../../assets/icons/client.png" alt="" class="cursor pointer">
+                            <img src="../../../assets/icons/client.png" alt="" class="cursor pointer">
+                            <img src="../../../assets/icons/client.png" alt="" class="cursor pointer">
+                            <img src="../../../assets/icons/client.png" alt="" class="cursor pointer">
+                        </div>
+                    </div>
+            </div>
+            <!-- Get in touch -->
+            <div class="w-full h-fit mdp-4" id="contact">
+                <span class="flex flex-col gap-3 text-center p-4 md:p-20">
+                    <span class="text-lg font-bold w-full lg:text-xl text-primary-strong">Gen in Touch</span>
+                    <span>We are here for you! How can we help?</span>
+                </span>
+               <div class="flex justify-center items-center w-full">
+                    <form class="w-full flex flex-col md:w-1/2" (ngSubmit)="sendMessage(contactForm)" #contactForm="ngForm">
+                        <div class="flex flex-col gap-3 p-2">
+                            <span class="flex justify-between w-full gap-3 h-fit items-center relative">
+                                <label for="name">Name</label>
+                                @if(name.invalid && (name.dirty || name.touched)){
+                                    <p class="inline text-red-500 absolute right-0">This is a required field*</p>
+                                }
+                            </span>
+                            <input type="text" name="name" class="rounded-lg border border-primary-strong bg-white" #name="ngModel" ngModel required>
+                        </div>
+                        <div class="flex flex-col gap-3 p-2">
+                            <span class="flex justify-between w-full gap-3 h-fit items-center relative">
+                                <label for="email">Email</label>
+                                @if(email.invalid && (email.touched || email.dirty)){
+                                    <p class="inline text-red-500 absolute right-0" >A valid email is required*</p>
+                                }
+                            </span>
+                            <input type="email" name="email" class="rounded-lg border border-primary-strong bg-white" ngModel required email #email="ngModel">
+                        </div><div class="flex flex-col gap-3 p-2">
+                            <span class="flex justify-between w-full gap-3 h-fit items-center relative">
+                                <label for="message">Message</label>
+                                @if(message.invalid && (message.dirty || message.touched)){
+                                    <p class="inline text-red-500 absolute right-0">This field should have at least five words*</p>
+                                }
+                            </span>
+                            <textarea name="message" class="rounded-lg border border-primary-strong bg-white p-2 resize-none outline-none" rows="7" ngModel required minlength="10" #message="ngModel"></textarea>
+                        </div>
+                        <button type="submit" class="text-white bg-primary-strong border border-primary-strong active:bg-white active:text-primary-strong rounded-lg p-4 test-center"><span class="text-center font-semibold w-full">Send</span></button>
+                    </form>
+               </div>
+            </div>
+        </section>
+        <!-- Bottom Section -->
+        <section class="flex justify-center flex-wrap p-3 gap-20 bg-primary-light md:p-20">
+            <p class="font-bold text-lg md:text-lg text-primary-strong text-center md:w-2/3 leading-relaxed">"We offer a smooth and effective method for companies and organizations to control the flow of visitors into their facilities by automating visitor registration procedure, streamlining checkins and strengthening security measures thanks to cutting edge texhnology and user friendly interfaces."</p>
+        </section>
+        <!-- Footer -->
+        <app-footer></app-footer>
+    </div>
+</div>
+
+@if(showForm){
+    <demo-form 
+    (closeEvent)="close()" 
+    [formConfig]="formConfig" 
+    [formTemplate]="bookDemoForm" 
+    (formValue)="getFormValue($event)" 
+    [submit]="'Submit'" 
+    [size]="'fit'"
+    ></demo-form>
+}

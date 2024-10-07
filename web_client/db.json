@@ -1,0 +1,283 @@
+{
+    "visits":[
+        {
+            "name": "Alice Johnson",
+            "id_number": "ID001",
+            "phone_number": "555-1234",
+            "email": "alice.johnson@example.com",
+            "time_in": "2024-08-01T09:00:00Z",
+            "time_out": "2024-08-01T10:00:00Z",
+            "status": true
+        },
+        {
+            "name": "Bob Smith",
+            "id_number": "ID002",
+            "phone_number": "555-5678",
+            "email": "bob.smith@example.com",
+            "time_in": "2024-08-01T09:30:00Z",
+            "time_out": "2024-08-01T11:00:00Z",
+            "status": true
+        },
+        {
+            "name": "Charlie Brown",
+            "id_number": "ID003",
+            "phone_number": "555-8765",
+            "email": "charlie.brown@example.com",
+            "time_in": "2024-08-01T10:00:00Z",
+            "time_out": "2024-08-01T12:00:00Z",
+            "status": false
+        },
+        {
+            "name": "Diana Prince",
+            "id_number": "ID004",
+            "phone_number": "555-4321",
+            "email": "diana.prince@example.com",
+            "time_in": "2024-08-01T11:00:00Z",
+            "time_out": "2024-08-01T13:00:00Z",
+            "status": true
+        },
+        {
+            "name": "Ethan Hunt",
+            "id_number": "ID005",
+            "phone_number": "555-3456",
+            "email": "ethan.hunt@example.com",
+            "time_in": "2024-08-01T12:00:00Z",
+            "time_out": "2024-08-01T14:00:00Z",
+            "status": false
+        },
+        {
+            "name": "Fiona Gallagher",
+            "id_number": "ID006",
+            "phone_number": "555-6543",
+            "email": "fiona.gallagher@example.com",
+            "time_in": "2024-08-01T13:00:00Z",
+            "time_out": "2024-08-01T15:00:00Z",
+            "status": true
+        },
+        {
+            "name": "George Costanza",
+            "id_number": "ID007",
+            "phone_number": "555-7890",
+            "email": "george.costanza@example.com",
+            "time_in": "2024-08-01T14:00:00Z",
+            "time_out": "2024-08-01T16:00:00Z",
+            "status": true
+        },
+        {
+            "name": "Hannah Baker",
+            "id_number": "ID008",
+            "phone_number": "555-0987",
+            "email": "hannah.baker@example.com",
+            "time_in": "2024-08-01T15:00:00Z",
+            "time_out": "2024-08-01T17:00:00Z",
+            "status": false
+        },
+        {
+            "name": "Ian Malcolm",
+            "id_number": "ID009",
+            "phone_number": "555-1357",
+            "email": "ian.malcolm@example.com",
+            "time_in": "2024-08-01T16:00:00Z",
+            "time_out": "2024-08-01T18:00:00Z",
+            "status": true
+        },
+        {
+            "name": "Julia Roberts",
+            "id_number": "ID010",
+            "phone_number": "555-2468",
+            "email": "julia.roberts@example.com",
+            "time_in": "2024-08-01T17:00:00Z",
+            "time_out": "2024-08-01T19:00:00Z",
+            "status": false
+        },{
+            "name": "Alice Johnson",
+            "id_number": "ID001",
+            "phone_number": "555-1234",
+            "email": "alice.johnson@example.com",
+            "time_in": "2024-08-01T09:00:00Z",
+            "time_out": "2024-08-01T10:00:00Z",
+            "status": true
+        },
+        {
+            "name": "Bob Smith",
+            "id_number": "ID002",
+            "phone_number": "555-5678",
+            "email": "bob.smith@example.com",
+            "time_in": "2024-08-01T09:30:00Z",
+            "time_out": "2024-08-01T11:00:00Z",
+            "status": true
+        },
+        {
+            "name": "Charlie Brown",
+            "id_number": "ID003",
+            "phone_number": "555-8765",
+            "email": "charlie.brown@example.com",
+            "time_in": "2024-08-01T10:00:00Z",
+            "time_out": "2024-08-01T12:00:00Z",
+            "status": false
+        },
+        {
+            "name": "Diana Prince",
+            "id_number": "ID004",
+            "phone_number": "555-4321",
+            "email": "diana.prince@example.com",
+            "time_in": "2024-08-01T11:00:00Z",
+            "time_out": "2024-08-01T13:00:00Z",
+            "status": true
+        },
+        {
+            "name": "Ethan Hunt",
+            "id_number": "ID005",
+            "phone_number": "555-3456",
+            "email": "ethan.hunt@example.com",
+            "time_in": "2024-08-01T12:00:00Z",
+            "time_out": "2024-08-01T14:00:00Z",
+            "status": false
+        },
+        {
+            "name": "Fiona Gallagher",
+            "id_number": "ID006",
+            "phone_number": "555-6543",
+            "email": "fiona.gallagher@example.com",
+            "time_in": "2024-08-01T13:00:00Z",
+            "time_out": "2024-08-01T15:00:00Z",
+            "status": true
+        },
+        {
+            "name": "George Costanza",
+            "id_number": "ID007",
+            "phone_number": "555-7890",
+            "email": "george.costanza@example.com",
+            "time_in": "2024-08-01T14:00:00Z",
+            "time_out": "2024-08-01T16:00:00Z",
+            "status": true
+        },
+        {
+            "name": "Hannah Baker",
+            "id_number": "ID008",
+            "phone_number": "555-0987",
+            "email": "hannah.baker@example.com",
+            "time_in": "2024-08-01T15:00:00Z",
+            "time_out": "2024-08-01T17:00:00Z",
+            "status": false
+        },
+        {
+            "name": "Ian Malcolm",
+            "id_number": "ID009",
+            "phone_number": "555-1357",
+            "email": "ian.malcolm@example.com",
+            "time_in": "2024-08-01T16:00:00Z",
+            "time_out": "2024-08-01T18:00:00Z",
+            "status": true
+        },
+        {
+            "name": "Julia Roberts",
+            "id_number": "ID010",
+            "phone_number": "555-2468",
+            "email": "julia.roberts@example.com",
+            "time_in": "2024-08-01T17:00:00Z",
+            "time_out": "2024-08-01T19:00:00Z",
+            "status": false
+        }
+    ],
+
+    "traffic":[
+        {
+            "hour": 0,
+            "visits": 0
+        },
+        {
+            "hour": 1,
+            "visits": 0
+        },
+        {
+            "hour": 2,
+            "visits": 0
+        },
+        {
+            "hour": 3,
+            "visits": 0
+        },
+        {
+            "hour": 4,
+            "visits": 0
+        },
+        {
+            "hour": 5,
+            "visits": 1
+        },
+        {
+            "hour": 6,
+            "visits": 3
+        },
+        {
+            "hour": 7,
+            "visits": 4
+        },
+        {
+            "hour": 8,
+            "visits": 9
+        },
+        {
+            "hour": 9,
+            "visits": 6
+        },
+        {
+            "hour": 10,
+            "visits": 5
+        },
+        {
+            "hour": 11,
+            "visits": 6
+        },
+        {
+            "hour": 12,
+            "visits": 10
+        },
+        {
+            "hour": 13,
+            "visits": 10
+        },
+        {
+            "hour": 14,
+            "visits": 12
+        },
+        {
+            "hour": 15,
+            "visits": 7
+        },
+        {
+            "hour": 16,
+            "visits": 5
+        },
+        {
+            "hour": 17,
+            "visits": 6
+        },
+        {
+            "hour": 18,
+            "visits": 8
+        },
+        {
+            "hour": 19,
+            "visits": 2
+        },
+        {
+            "hour": 20,
+            "visits": 3
+        },
+        {
+            "hour": 21,
+            "visits": 1
+        },
+        {
+            "hour": 22,
+            "visits": 0
+        },
+        {
+            "hour": 23,
+            "visits": 0
+        }
+    ]
+    
+}

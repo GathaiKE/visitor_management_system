@@ -1,0 +1,64 @@
+<div class="flex w-full p-2 flex-col justify-center items-center" *ngIf="isClientAdmin">
+  <h1 mat-dialog-title class="Stext-lg">Add Building</h1>
+  <div class="flex justify-center items-center flex-col gap-2" class=" flex justify-center w-full">
+    <form action="submit" [formGroup]="buildingForm" class="w-10/12 flex flex-col gap-2" >
+      <div class="flex w-full flex-col gap-3">
+        <span class="flex flex-col gap-2 w-full">
+          <label for="building">Building Name</label>
+          <input type="text" formControlName="building_name" placeholder="XYZ House"/>
+        </span>
+      </div>
+      <div class="flex justify-right gap-2">
+        <button
+        class="bg-primary-strong text-white border border-primary-strong active:text-primary-strong active:bg-white"
+        (click)="add()"
+        >
+          Save
+        </button>
+        <button
+          class="bg-primary-strong text-white border border-primary-strong active:text-primary-strong active:bg-white"
+          (click)="cancel()"
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+
+</div>
+
+
+<div class="flex w-full p-2 flex-col justify-center items-center" *ngIf="isSuperAdmin">
+  <h1 mat-dialog-title class="Stext-lg">Add Building</h1>
+  <div class="flex justify-center items-center flex-col gap-2" class=" flex justify-center w-full">
+    <form action="submit" [formGroup]="buildingForm" class="w-10/12 flex flex-col gap-2" >
+      <div class="flex w-full flex-col gap-3">
+        <span class="flex flex-col w-1/2">
+          <label for="organization">Organization</label>
+          <select formControlName="organization" id="organization">
+            <option *ngFor="let organization of organizations" [value]="organization.id">{{organization.organization_name}}</option>
+          </select>
+        </span>
+        <span class="flex flex-col gap-2 w-1/2">
+          <label for="building">Building Name</label>
+          <input type="text" formControlName="building_name" placeholder="XYZ House"/>
+        </span>
+      </div>
+      <div class="flex justify-right gap-2">
+        <button
+        class="bg-primary-strong text-white border border-primary-strong active:text-primary-strong active:bg-white"
+        (click)="add()"
+        >
+          Save
+        </button>
+        <button
+          class="bg-primary-strong text-white border border-primary-strong active:text-primary-strong active:bg-white"
+          (click)="cancel()"
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+
+</div>
